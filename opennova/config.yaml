@@ -1,0 +1,38 @@
+name: "OpenNova"
+version: "1.0.1"
+slug: "opennova"
+description: "Self-hosted Novabot cloud replacement — run your N1000/N2000 completely local."
+url: "https://github.com/rvbcrs/Novabot"
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: system
+boot: auto
+ports:
+  80/tcp: 8280
+  443/tcp: 9443
+  1883/tcp: 1883
+  3000/tcp: 3000
+ports_description:
+  80/tcp: "OpenNova HTTP API & admin panel"
+  443/tcp: "OpenNova HTTPS (for Novabot app)"
+  1883/tcp: "MQTT broker (mower & charger)"
+  3000/tcp: "OpenNova internal API"
+map:
+  - type: ssl
+    read_only: true
+options:
+  enable_tls: true
+  ha_mqtt_host: ""
+  ha_mqtt_port: 1883
+  ha_mqtt_user: ""
+  ha_mqtt_pass: ""
+schema:
+  enable_tls: "bool"
+  ha_mqtt_host: "str?"
+  ha_mqtt_port: "port?"
+  ha_mqtt_user: "str?"
+  ha_mqtt_pass: "password?"
+webui: "http://[HOST]:[PORT:80]"
+panel_icon: "mdi:robot-mower"
